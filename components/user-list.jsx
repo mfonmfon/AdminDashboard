@@ -14,8 +14,10 @@ const users = [
   {
     id: 1,
     name: "John Doe",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Test',
     email: "john.doe@example.com",
-    role: "User",
+    amount: "2000.00",
     status: "Online",
     lastActive: "Just now",
     registeredDate: "Jan 12, 2023",
@@ -23,8 +25,10 @@ const users = [
   {
     id: 2,
     name: "Jane Smith",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Pro',
     email: "jane.smith@example.com",
-    role: "Admin",
+    amount: "100,000.000",
     status: "Online",
     lastActive: "5 minutes ago",
     registeredDate: "Mar 5, 2023",
@@ -32,8 +36,10 @@ const users = [
   {
     id: 3,
     name: "Robert Johnson",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Pro',
     email: "robert.johnson@example.com",
-    role: "User",
+    amount: "200.00",
     status: "Offline",
     lastActive: "2 hours ago",
     registeredDate: "Apr 18, 2023",
@@ -41,8 +47,10 @@ const users = [
   {
     id: 4,
     name: "Emily Davis",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Premium',
     email: "emily.davis@example.com",
-    role: "User",
+    amount: "30,000.00",
     status: "Offline",
     lastActive: "1 day ago",
     registeredDate: "Jun 22, 2023",
@@ -50,8 +58,10 @@ const users = [
   {
     id: 5,
     name: "Michael Wilson",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Test',
     email: "michael.wilson@example.com",
-    role: "Moderator",
+    amount: "50,000",
     status: "Online",
     lastActive: "Just now",
     registeredDate: "Aug 3, 2023",
@@ -59,8 +69,10 @@ const users = [
   {
     id: 6,
     name: "Sarah Brown",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Pro',
     email: "sarah.brown@example.com",
-    role: "User",
+    amount: "300.00",
     status: "Offline",
     lastActive: "3 days ago",
     registeredDate: "Oct 15, 2023",
@@ -68,8 +80,10 @@ const users = [
   {
     id: 7,
     name: "David Miller",
+    withdrawDueDate: '2023-12-01',
+    packages: 'Premium',
     email: "david.miller@example.com",
-    role: "User",
+    amount: "100.00",
     status: "Online",
     lastActive: "30 minutes ago",
     registeredDate: "Nov 7, 2023",
@@ -108,10 +122,12 @@ export function UserList({ searchQuery }) {
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
-            <TableHead>Role</TableHead>
+            <TableHead>Deposit</TableHead>
+            <TableHead>Withdraw due date</TableHead>
+            <TableHead>Package</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Last Active</TableHead>
-            <TableHead>Registered Date</TableHead>
+            <TableHead>Registration Date</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -120,7 +136,9 @@ export function UserList({ searchQuery }) {
             <TableRow key={user.id} className={suspendedUsers.includes(user.id) ? "opacity-50" : ""}>
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>{user.role}</TableCell>
+              <TableCell>{user.amount}</TableCell>
+              <TableCell>{user.withdrawDueDate}</TableCell>
+              <TableCell>{user.packages}</TableCell>
               <TableCell>
                 <Badge variant={user.status === "Online" ? "success" : "secondary"}>
                   {user.status === "Online" ? <Check className="mr-1 h-3 w-3" /> : <Ban className="mr-1 h-3 w-3" />}
@@ -171,11 +189,15 @@ export function UserList({ searchQuery }) {
                 <span className="col-span-3">{selectedUser.email}</span>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-sm font-medium">Role:</span>
-                <span className="col-span-3">{selectedUser.role}</span>
+                <span className="text-sm font-medium">Amount:</span>
+                <span className="col-span-3">{selectedUser.amount}</span>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-sm font-medium">Status:</span>
+                <span className="text-sm font-medium">Withdraw due Date:</span>
+                <span className="col-span-3">{selectedUser.withdrawDueDate}</span>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <span className="text-sm font-medium">Withdraw due Date:</span>
                 <span className="col-span-3">
                   <Badge variant={selectedUser.status === "Online" ? "success" : "secondary"}>
                     {selectedUser.status}
